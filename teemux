@@ -16,13 +16,15 @@ cd "$TEEMUXROOT" || exit 1
 cd || exit 1
 
 tmux new -s teemux -d
-tmux send-keys -t teemux "cd $TEEMUXROOT/client0" C-m
-tmux send-keys -t teemux "$RUN" C-m
-tmux send-keys -t teemux C-m
-tmux split-window -h -t teemux
 tmux send-keys -t teemux "cd $TEEMUXROOT/client1" C-m
 tmux send-keys -t teemux "$RUN" C-m
 tmux send-keys -t teemux C-m
+sleep 1
+tmux split-window -h -t teemux
+tmux send-keys -t teemux "cd $TEEMUXROOT/client0" C-m
+tmux send-keys -t teemux "$RUN" C-m
+tmux send-keys -t teemux C-m
 tmux select-window -t teemux:0
+tmux swap-pane -s 0 -t 1
 tmux attach -t teemux
 
