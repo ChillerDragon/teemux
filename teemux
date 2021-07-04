@@ -6,6 +6,9 @@ TEEMUXROOT="$( cd -- "$(dirname "$0")" || exit 1 >/dev/null 2>&1 ; pwd -P )"
 cd "$TEEMUXROOT" || exit 1
 cd || exit 1
 
+mkdir -p "$TEEMUXROOT/client0" || exit 1
+mkdir -p "$TEEMUXROOT/client1" || exit 1
+
 tmux new -s teemux -d
 tmux send-keys -t teemux "cd $TEEMUXROOT/client1" C-m
 tmux send-keys -t teemux "../scripts/run.sh $1" C-m
